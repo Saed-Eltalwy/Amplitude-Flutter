@@ -1,11 +1,11 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:js_interop';
 
 import 'package:flutter/services.dart';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
-import 'package:js/js_util.dart' as js;
-
 import 'web/amplitude_js.dart';
+import 'dart:js_util';
 
 class AmplitudeFlutterPlugin {
   static void registerWith(Registrar registrar) {
@@ -192,11 +192,11 @@ class AmplitudeFlutterPlugin {
   }
 
   Object mapToJSObj(Map<dynamic, dynamic> map) {
-    var object = js.newObject();
+    var object = JSObject();
     map.forEach((k, v) {
       var key = k;
       var value = (v is Map) ? mapToJSObj(v) : v;
-      js.setProperty(object, key, value);
+      setProperty(object, key, value);
     });
     return object;
   }

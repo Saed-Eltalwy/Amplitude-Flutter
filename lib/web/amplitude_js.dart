@@ -1,6 +1,6 @@
 @JS()
 
-import 'package:js/js.dart';
+import 'dart:js_interop';
 
 @JS('amplitude.options')
 class Options {
