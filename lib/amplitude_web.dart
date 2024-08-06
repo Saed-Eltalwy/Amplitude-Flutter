@@ -5,7 +5,7 @@ import 'dart:js_interop';
 import 'package:flutter/services.dart';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'web/amplitude_js.dart';
-import 'dart:js_util';
+import 'dart:js_interop_unsafe' as js;
 
 class AmplitudeFlutterPlugin {
   static void registerWith(Registrar registrar) {
@@ -87,12 +87,9 @@ class AmplitudeFlutterPlugin {
       case "logEvent":
         {
           String eventType = args['eventType'];
-          var eventProperties = (args['eventProperties'] != null)
-              ? mapToJSObj(args['eventProperties'])
-              : null;
+          var eventProperties = (args['eventProperties'] != null) ? mapToJSObj(args['eventProperties']) : null;
           bool outOfSession = args['outOfSession'] ?? false;
-          return amplitude.logEvent(
-              eventType, eventProperties.jsify(), null, null, outOfSession);
+          return amplitude.logEvent(eventType, eventProperties.jsify(), null, null, outOfSession);
         }
       case "logRevenue":
         {
@@ -125,8 +122,7 @@ class AmplitudeFlutterPlugin {
           var userProperties = args['userProperties'];
           Identify groupIdentify = createIdentify(userProperties);
           bool outOfSession = args['outOfSession'] ?? false;
-          return amplitude.groupIdentify(
-              groupType, groupName, groupIdentify, null, null, outOfSession);
+          return amplitude.groupIdentify(groupType, groupName, groupIdentify, null, null, outOfSession);
         }
       case "setUserProperties":
         {
@@ -185,8 +181,7 @@ class AmplitudeFlutterPlugin {
       default:
         throw PlatformException(
           code: 'Unimplemented',
-          details:
-              "The amplitude_flutter plugin for web doesn't implement the method '${call.method}'",
+          details: "The amplitude_flutter plugin for web doesn't implement the method '${call.method}'",
         );
     }
   }
@@ -196,7 +191,7 @@ class AmplitudeFlutterPlugin {
     map.forEach((k, v) {
       var key = k;
       var value = (v is Map) ? mapToJSObj(v) : v;
-      setProperty(object, key, value);
+      object.setProperty(key, value);
     });
     return object;
   }
