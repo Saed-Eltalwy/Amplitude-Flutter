@@ -1,90 +1,84 @@
 import 'dart:js_interop';
 
 @JS('amplitude.options')
-extension type Options._(JSObject _) implements JSObject {
-  external Options();
+@staticInterop
+class Options {
+  external factory Options();
+}
 
+extension OptionsExtension on Options {
   external set eventUploadPeriodMillis(int value);
 }
 
 @JS('amplitude')
-extension type Amplitude._(JSObject _) implements JSObject {
-  external Amplitude(String instanceName);
+@staticInterop
+class Amplitude {
+  external factory Amplitude(String instanceName);
 
   external static Amplitude getInstance(String instanceName);
+}
 
+extension AmplitudeExtension on Amplitude {
   external void init(String api, String? userId);
-
   external void setOptOut(bool optOut);
-
   external void setUserId(String? userId, bool startNewSession);
-
   external void setDeviceId(String deviceId);
-
   external void setServerUrl(String serverUrl);
-
-  external void setEventUploadThreshold(int);
-
+  external void setEventUploadThreshold(int threshold);
   external void regenerateDeviceId();
-
   external void setUseDynamicConfig(bool useDynamicConfig);
 
   external void logEvent(
-      String eventType, Object? eventProperties, Function? optCallback, Function? optErrorCallback, bool? outOfSession);
+      String eventType,
+      JSAny? eventProperties,
+      JSFunction? optCallback,
+      JSFunction? optErrorCallback,
+      bool? outOfSession
+      );
 
-  external void logRevenue(double price, int quantity, String? productIdentifier);
-
-  external void setGroup(String groupType, dynamic groupName);
-
-  external void setUserProperties(Object userProperties);
-
+  external void logRevenue(
+      double price,
+      int quantity,
+      String? productIdentifier
+      );
+  external void setGroup(String groupType, JSAny groupName);
+  external void setUserProperties(JSAny userProperties);
   external void clearUserProperties();
-
   external void sendEvents();
-
   external void setLibrary(String? libraryName, String? libraryVersion);
-
   external String getUserId();
-
   external String getDeviceId();
-
   external void getSessionId();
-
   external void setMinTimeBetweenSessionsMillis(int timeInMillis);
-
   external void setServerZone(String serverZone, bool updateServerUrl);
-
   external void identify(Identify identify);
-
-  external void groupIdentify(String groupType, String groupName, Identify groupIdentify, Function? opt_callback,
-      Function? opt_error_callback, bool? outOfSession);
-
+  external void groupIdentify(
+      String groupType,
+      String groupName,
+      Identify groupIdentify,
+      JSFunction? optCallback,
+      JSFunction? optErrorCallback,
+      bool? outOfSession
+      );
   external bool setOffline(bool enabled);
-
-  external Options options;
+  external Options get options;
 }
 
 @JS('amplitude.Identify')
-extension type Identify._(JSObject _) implements JSObject {
-  external Identify();
+@staticInterop
+class Identify {
+  external factory Identify();
+}
 
-  external void add(String key, dynamic value);
-
-  external void append(String key, dynamic value);
-
-  external void prepend(String key, dynamic value);
-
-  external void set(String key, dynamic value);
-
-  external void setOnce(String key, dynamic value);
-
+extension IdentifyExtension on Identify {
+  external void add(String key, JSAny value);
+  external void append(String key, JSAny value);
+  external void prepend(String key, JSAny value);
+  external void set(String key, JSAny value);
+  external void setOnce(String key, JSAny value);
   external void unset(String key);
-
-  external void preInsert(String key, dynamic value);
-
-  external void postInsert(String key, dynamic value);
-
-  external void remove(String key, dynamic value);
-
+  external void preInsert(String key, JSAny value);
+  external void postInsert(String key, JSAny value);
+  external void remove(String key, JSAny value);
   external void clearAll();
 }

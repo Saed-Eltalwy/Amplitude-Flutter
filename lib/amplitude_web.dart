@@ -92,7 +92,7 @@ class AmplitudeFlutterPlugin {
               : null;
           bool outOfSession = args['outOfSession'] ?? false;
           return amplitude.logEvent(
-              eventType, eventProperties, null, null, outOfSession);
+              eventType, eventProperties.jsify(), null, null, outOfSession);
         }
       case "logRevenue":
         {
@@ -131,7 +131,7 @@ class AmplitudeFlutterPlugin {
       case "setUserProperties":
         {
           var userProperties = mapToJSObj(args['userProperties']);
-          return amplitude.setUserProperties(userProperties);
+          return amplitude.setUserProperties(userProperties.jsify()!);
         }
       case "clearUserProperties":
         {
