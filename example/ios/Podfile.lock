@@ -1,8 +1,10 @@
 PODS:
-  - Amplitude (8.18.0)
+  - Amplitude (8.18.0):
+    - AnalyticsConnector (~> 1.0.0)
   - amplitude_flutter (0.0.1):
     - Amplitude (= 8.18.0)
     - Flutter
+  - AnalyticsConnector (1.0.3)
   - Flutter (1.0.0)
 
 DEPENDENCIES:
@@ -12,6 +14,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Amplitude
+    - AnalyticsConnector
 
 EXTERNAL SOURCES:
   amplitude_flutter:
@@ -20,10 +23,11 @@ EXTERNAL SOURCES:
     :path: Flutter
 
 SPEC CHECKSUMS:
-  Amplitude: ef9ed339ddd33c9183edf63fa4bbaa86cf873321
-  amplitude_flutter: 8ddb231989e68ed8c005c838d7fc59edbca09833
-  Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
+  Amplitude: 184def4f87aa26f94a93a7faa334e06b1cae704d
+  amplitude_flutter: 0f617f89d62b10c40a0ab14849e660a7c12e4e46
+  AnalyticsConnector: a53214d38ae22734c6266106c0492b37832633a9
+  Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
 
 PODFILE CHECKSUM: fe0e1ee7f3d1f7d00b11b474b62dd62134535aea
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.16.2
